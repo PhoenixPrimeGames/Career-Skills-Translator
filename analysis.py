@@ -3,7 +3,7 @@
 
 This module intentionally makes no API calls yet (Milestone 3.3A).
 """
-
+from openai import OpenAI
 from schemas import AnalysisResult
 from validation import CareerInput
 
@@ -67,3 +67,66 @@ def verify_source_evidence(result: AnalysisResult, description: str) -> None:
             raise EvidenceValidationError(
                 "AI source evidence could not be verified"
             )
+
+
+# Central configuration for the first AI integration.
+MODEL_ID = "gpt-6-luna"
+API_TIMEOUT_SECONDS = 45.0
+MAX_OUTPUT_TOKENS = 2500
+
+
+class AnalysisUnavailableError(RuntimeError):
+    """The model did not return a usable completed analysis."""
+
+
+def analyze_career(
+    career_input: CareerInput,
+    *,
+    client: OpenAI | None = None,
+    model: str = MODEL_ID,
+) -> AnalysisResult:
+    """Request a structured career analysis from the configured model.
+
+    An injected client enables offline testing without API credentials.
+    """
+    # Use the test client when supplied. Otherwise, create a real client.
+    # Automatic retries are disabled to avoid duplicate billable requests.
+    api_client = (
+        client
+        if client is not None
+        else OpenAI(max_retries=0, timeout=API_TIMEOUT_SECONDS)
+    )
+
+    # The SDK converts our Pydantic model into a structured-output schema.
+    response = api_client.responses.parse(
+        model=model,
+        instructions=ANALYSIS_INSTRUCTIONS,
+        input=build_user_payload(career_input),
+        text_format=AnalysisResult,
+        reasoning={"effort": "low"},
+        max_output_tokens=MAX_OUTPUT_TOKENS,
+        store=False,
+        timeout=API_TIMEOUT_SECONDS,
+    )
+
+    # Never treat an incomplete response as a successful analysis.
+    if response.status != "completed":
+        raise AnalysisUnavailableError(
+            "The AI analysis could not be completed"
+        )
+
+    # A refusal or unusable output may have no parsed result.
+    result = response.output_parsed
+
+    if not isinstance(result, AnalysisResult):
+        raise AnalysisUnavailableError(
+            "The AI analysis did not return a valid result"
+        )
+
+    # Verify the reported evidence against the user's actual description.
+    verify_source_evidence(
+        result,
+        career_input.experience_description,
+    )
+
+    return result
