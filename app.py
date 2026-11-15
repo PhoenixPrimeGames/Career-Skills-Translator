@@ -1,13 +1,22 @@
 
 """Streamlit interface for Career Skills Translator.
 
-Milestone 3.4A: Collect and validate career information.
-AI analysis will be connected in Milestone 3.4B.
+Collects career information, requests AI analysis, and presents results.
 """
 
+import os
+
 import streamlit as st
+from openai import OpenAI
 from pydantic import ValidationError
 
+from analysis import (
+    API_TIMEOUT_SECONDS,
+    AnalysisUnavailableError,
+    EvidenceValidationError,
+    analyze_career,
+)
+from schemas import AnalysisResult, SkillTranslation
 from validation import CareerInput
 
 
@@ -19,7 +28,7 @@ FIELD_LABELS = {
 
 
 def validation_messages(error: ValidationError) -> list[str]:
-    """Convert Pydantic validation errors into safe, readable messages."""
+    """Convert Pydantic errors into safe, readable messages."""
     messages = []
 
     for issue in error.errors(include_input=False):
@@ -48,8 +57,88 @@ def validation_messages(error: ValidationError) -> list[str]:
     return messages
 
 
+def get_api_key() -> str:
+    """Retrieve credentials without exposing them in the interface."""
+    key = os.getenv("OPENAI_API_KEY", "").strip()
+
+    if key:
+        return key
+
+    try:
+        return str(st.secrets.get("OPENAI_API_KEY", "")).strip()
+    except (FileNotFoundError, KeyError):
+        return ""
+
+
+def format_analysis(result: AnalysisResult) -> str:
+    """Produce a complete plain-text analysis for copying."""
+    lines = [
+        "Career Skills Translator - Analysis Results",
+        "",
+        f"Status: {result.status.replace('_', ' ').title()}",
+        f"Summary: {result.summary}",
+    ]
+
+    for index, skill in enumerate(result.skills, start=1):
+        lines.extend(["", f"Skill {index}"])
+
+        # Discover fields dynamically from the central schema.
+        for name, field in SkillTranslation.model_fields.items():
+            label = field.title or name.replace("_", " ").title()
+            lines.append(f"{label}: {getattr(skill, name)}")
+
+    lines.extend([
+        "",
+        "AI-generated interpretation of self-reported experience.",
+        "This analysis does not verify professional qualifications.",
+    ])
+
+    return "\n".join(lines)
+
+
+def render_analysis(result: AnalysisResult) -> None:
+    """Present validated results using schema-defined field labels."""
+    st.subheader("Career Analysis Results")
+
+    if result.status == "insufficient_information":
+        st.warning(
+            "Insufficient information to identify supported skills."
+        )
+    else:
+        st.success(
+            f"Analysis completed. "
+            f"{len(result.skills)} transferable skill(s) identified."
+        )
+
+    st.write(result.summary)
+
+    for index, skill in enumerate(result.skills, start=1):
+        with st.container(border=True):
+            st.markdown(f"### Skill {index}")
+
+            # New ordinary text fields appear automatically.
+            for name, field in SkillTranslation.model_fields.items():
+                label = field.title or name.replace("_", " ").title()
+
+                st.markdown(f"**{label}**")
+                st.write(getattr(skill, name))
+
+    st.subheader("Copy Complete Analysis")
+    st.code(
+        format_analysis(result),
+        language=None,
+        wrap_lines=True,
+    )
+
+    st.caption(
+        "These findings are AI-generated interpretations of "
+        "self-reported experience. They do not establish "
+        "professional qualifications or technical proficiency."
+    )
+
+
 def main() -> None:
-    """Build the career-input form and display validation feedback."""
+    """Build the form, validate input, and execute AI analysis."""
     st.set_page_config(
         page_title="Career Skills Translator",
         page_icon="🧭",
@@ -57,15 +146,16 @@ def main() -> None:
     )
 
     st.title("Career Skills Translator")
+
     st.write(
         "Explore how your existing professional experience "
         "may apply to a different career field."
     )
 
     st.caption(
-        "Do not include confidential employer information. "
-        "When AI analysis is enabled, submitted descriptions "
-        "will be sent to an external AI provider."
+        "Do not submit confidential employer information. "
+        "Your description will be sent to an external AI provider "
+        "when you request an analysis."
     )
 
     with st.form("career_form"):
@@ -77,8 +167,8 @@ def main() -> None:
         experience = st.text_area(
             "Responsibilities and experience",
             placeholder=(
-                "Describe the work you perform, the problems "
-                "you solve, and the responsibilities you hold."
+                "Describe your responsibilities, experience, "
+                "and the problems you solve."
             ),
             height=180,
         )
@@ -89,13 +179,13 @@ def main() -> None:
         )
 
         submitted = st.form_submit_button(
-            "Validate information",
+            "Analyze transferable skills",
             type="primary",
         )
 
     if submitted:
         try:
-            CareerInput(
+            career_input = CareerInput(
                 current_occupation=occupation,
                 experience_description=experience,
                 target_career_field=target,
@@ -104,15 +194,42 @@ def main() -> None:
             for message in validation_messages(error):
                 st.error(message)
         else:
-            st.success(
-                "Your information is valid. "
-                "AI analysis will be connected in the next milestone."
-            )
+            api_key = get_api_key()
 
-    st.info(
-        "Development version: This interface currently validates "
-        "inputs only. No AI request is made."
-    )
+            if not api_key:
+                st.error(
+                    "The AI service is not configured. "
+                    "Contact the application administrator."
+                )
+            else:
+                with st.spinner("Analyzing transferable skills..."):
+                    try:
+                        client = OpenAI(
+                            api_key=api_key,
+                            max_retries=0,
+                            timeout=API_TIMEOUT_SECONDS,
+                        )
+
+                        result = analyze_career(
+                            career_input,
+                            client=client,
+                        )
+
+                    except (
+                        AnalysisUnavailableError,
+                        EvidenceValidationError,
+                    ) as error:
+                        st.error(str(error))
+
+                    except Exception:
+                        # Never expose raw exceptions or credentials.
+                        st.error(
+                            "An unexpected application error occurred. "
+                            "Please try again later."
+                        )
+
+                    else:
+                        render_analysis(result)
 
 
 if __name__ == "__main__":
