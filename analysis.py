@@ -3,7 +3,19 @@
 
 This module intentionally makes no API calls yet (Milestone 3.3A).
 """
-from openai import OpenAI
+import os
+
+from openai import (
+    APIConnectionError,
+    APIStatusError,
+    APITimeoutError,
+    AuthenticationError,
+    OpenAI,
+    OpenAIError,
+    PermissionDeniedError,
+    RateLimitError,
+)
+from pydantic import ValidationError
 from schemas import AnalysisResult
 from validation import CareerInput
 
@@ -79,51 +91,107 @@ class AnalysisUnavailableError(RuntimeError):
     """The model did not return a usable completed analysis."""
 
 
+class AnalysisConfigurationError(AnalysisUnavailableError):
+    """The AI service is not configured correctly."""
+
+
+class AnalysisTimeoutError(AnalysisUnavailableError):
+    """The AI request exceeded the permitted time."""
+
+
+class AnalysisRateLimitError(AnalysisUnavailableError):
+    """The AI provider temporarily rejected the request volume."""
+
+
+class AnalysisConnectionError(AnalysisUnavailableError):
+    """The AI service could not be reached."""
+
+
+
 def analyze_career(
     career_input: CareerInput,
     *,
     client: OpenAI | None = None,
     model: str = MODEL_ID,
 ) -> AnalysisResult:
-    """Request a structured career analysis from the configured model.
+    """Analyze a career transition with safe provider error handling."""
 
-    An injected client enables offline testing without API credentials.
-    """
-    # Use the test client when supplied. Otherwise, create a real client.
-    # Automatic retries are disabled to avoid duplicate billable requests.
-    api_client = (
-        client
-        if client is not None
-        else OpenAI(max_retries=0, timeout=API_TIMEOUT_SECONDS)
-    )
+    # Injected clients allow offline testing without credentials.
+    if client is not None:
+        api_client = client
+    else:
+        # Never attempt a live request without a configured API key.
+        if not os.getenv("OPENAI_API_KEY", "").strip():
+            raise AnalysisConfigurationError(
+                "The AI service is not configured. Contact the administrator."
+            )
 
-    # The SDK converts our Pydantic model into a structured-output schema.
-    response = api_client.responses.parse(
-        model=model,
-        instructions=ANALYSIS_INSTRUCTIONS,
-        input=build_user_payload(career_input),
-        text_format=AnalysisResult,
-        reasoning={"effort": "low"},
-        max_output_tokens=MAX_OUTPUT_TOKENS,
-        store=False,
-        timeout=API_TIMEOUT_SECONDS,
-    )
+        try:
+            api_client = OpenAI(
+                max_retries=0,
+                timeout=API_TIMEOUT_SECONDS,
+            )
+        except OpenAIError:
+            raise AnalysisConfigurationError(
+                "The AI service configuration could not be loaded."
+            ) from None
 
-    # Never treat an incomplete response as a successful analysis.
-    if response.status != "completed":
-        raise AnalysisUnavailableError(
-            "The AI analysis could not be completed"
+    try:
+        response = api_client.responses.parse(
+            model=model,
+            instructions=ANALYSIS_INSTRUCTIONS,
+            input=build_user_payload(career_input),
+            text_format=AnalysisResult,
+            reasoning={"effort": "low"},
+            max_output_tokens=MAX_OUTPUT_TOKENS,
+            store=False,
+            timeout=API_TIMEOUT_SECONDS,
         )
 
-    # A refusal or unusable output may have no parsed result.
-    result = response.output_parsed
+    except APITimeoutError:
+        raise AnalysisTimeoutError(
+            "The analysis timed out. Please try again later."
+        ) from None
+
+    except RateLimitError:
+        raise AnalysisRateLimitError(
+            "The AI service is temporarily at capacity or its usage limit."
+        ) from None
+
+    except (AuthenticationError, PermissionDeniedError):
+        raise AnalysisConfigurationError(
+            "The AI service credentials or permissions were rejected."
+        ) from None
+
+    except APIConnectionError:
+        raise AnalysisConnectionError(
+            "Unable to connect to the AI service. Please try again later."
+        ) from None
+
+    except APIStatusError:
+        raise AnalysisUnavailableError(
+            "The AI service could not process the request."
+        ) from None
+
+    except (OpenAIError, ValidationError, ValueError):
+        raise AnalysisUnavailableError(
+            "The AI service returned an invalid or unusable response."
+        ) from None
+
+    # Only completed, successfully parsed responses are accepted.
+    if getattr(response, "status", None) != "completed":
+        raise AnalysisUnavailableError(
+            "The AI analysis could not be completed."
+        )
+
+    result = getattr(response, "output_parsed", None)
 
     if not isinstance(result, AnalysisResult):
         raise AnalysisUnavailableError(
-            "The AI analysis did not return a valid result"
+            "The AI analysis did not return a valid result."
         )
 
-    # Verify the reported evidence against the user's actual description.
+    # Keep the previously tested evidence-verification behavior.
     verify_source_evidence(
         result,
         career_input.experience_description,

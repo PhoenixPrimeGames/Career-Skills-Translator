@@ -1,22 +1,33 @@
 
 """Offline tests for request serialization and source-evidence verification."""
 
-import json
-
-import pytest
-
-from types import SimpleNamespace
-from unittest.mock import Mock
-
-from analysis import AnalysisUnavailableError, analyze_career
-from schemas import AnalysisResult
+from openai import (
+    APIConnectionError,
+    APIStatusError,
+    APITimeoutError,
+    AuthenticationError,
+    PermissionDeniedError,
+    RateLimitError,
+)
+from pydantic import ValidationError
 
 from analysis import (
+    AnalysisConfigurationError,
+    AnalysisConnectionError,
+    AnalysisRateLimitError,
+    AnalysisTimeoutError,
+    AnalysisUnavailableError,
+    analyze_career,
     ANALYSIS_INSTRUCTIONS,
     EvidenceValidationError,
     build_user_payload,
     verify_source_evidence,
 )
+
+import json
+import pytest
+from types import SimpleNamespace
+from unittest.mock import Mock
 from schemas import AnalysisResult
 from validation import CareerInput
 
@@ -183,4 +194,94 @@ def test_analyze_career_rejects_fabricated_evidence():
     )
 
     with pytest.raises(EvidenceValidationError):
+        analyze_career(valid_input(), client=fake_client)
+
+
+
+def make_status_error(error_type, status_code):
+    """Construct a simulated SDK HTTP error with private details."""
+    response = Mock(
+        status_code=status_code,
+        request=Mock(),
+        headers={},
+    )
+    return error_type(
+        "PRIVATE_TEST_SECRET",
+        response=response,
+        body=None,
+    )
+
+
+def test_missing_api_key_rejected(monkeypatch):
+    """Missing credentials should fail before a live client is created."""
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+
+    with pytest.raises(AnalysisConfigurationError):
+        analyze_career(valid_input())
+
+
+@pytest.mark.parametrize("sdk_error,expected_error", [
+    (
+        APITimeoutError(request=Mock()),
+        AnalysisTimeoutError,
+    ),
+    (
+        APIConnectionError(request=Mock()),
+        AnalysisConnectionError,
+    ),
+    (
+        make_status_error(AuthenticationError, 401),
+        AnalysisConfigurationError,
+    ),
+    (
+        make_status_error(PermissionDeniedError, 403),
+        AnalysisConfigurationError,
+    ),
+    (
+        make_status_error(RateLimitError, 429),
+        AnalysisRateLimitError,
+    ),
+])
+def test_provider_failures_mapped_to_safe_errors(
+    sdk_error,
+    expected_error,
+):
+    """Known SDK failures must become application errors."""
+    fake_client = Mock()
+    fake_client.responses.parse.side_effect = sdk_error
+
+    with pytest.raises(expected_error) as captured:
+        analyze_career(valid_input(), client=fake_client)
+
+    assert "PRIVATE_TEST_SECRET" not in str(captured.value)
+
+
+def test_unexpected_http_status_rejected():
+    """Other HTTP errors must not expose provider response details."""
+    fake_client = Mock()
+    fake_client.responses.parse.side_effect = make_status_error(
+        APIStatusError,
+        500,
+    )
+
+    with pytest.raises(AnalysisUnavailableError) as captured:
+        analyze_career(valid_input(), client=fake_client)
+
+    assert "PRIVATE_TEST_SECRET" not in str(captured.value)
+
+
+def test_schema_parsing_error_rejected():
+    """Invalid structured data must produce a safe failure."""
+    fake_client = Mock()
+
+    try:
+        AnalysisResult.model_validate({
+            "status": "completed",
+            "summary": "Invalid response",
+            "skills": [],
+        })
+    except ValidationError as error:
+        fake_client.responses.parse.side_effect = error
+
+    with pytest.raises(AnalysisUnavailableError):
         analyze_career(valid_input(), client=fake_client)
