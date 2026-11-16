@@ -137,10 +137,40 @@ The description submitted for analysis is sent to an external AI provider. Do no
 
 Source evidence is checked against the submitted description. That verifies that a quoted excerpt appears in the text, **not** that the experience or AI interpretation is independently true. Results must be reviewed critically, particularly when a target career requires specialist training, licensing, or credentials.
 
+
 ## Screenshots and Deployment
 
-- **Screenshots:** To be added after capturing the completed application interface and a fictional example result.
-- **Public application URL:** Not yet available or verified.
+The following screenshots demonstrate the locally running application
+using fictional career-transition examples.
+
+### Input Form
+
+The initial interface collects the user's occupation, professional
+experience, and target career field.
+
+![Career Skills Translator input form](docs/screenshots/01-input-form.png)
+
+### Successful Career Analysis
+
+A fictional Engineering Technician example produces three transferable
+competencies. Each skill includes source evidence, a possible target
+application, an explanation, and limitations.
+
+![Successful career skills analysis](docs/screenshots/02-successful-analysis.png)
+
+### Insufficient Information
+
+When a fictional Office Assistant description provides only generic
+workplace behaviors, the application explains that more specific
+responsibilities are needed instead of inventing transferable skills.
+
+![Insufficient information response](docs/screenshots/03-insufficient-information.png)
+
+These are demonstration screenshots, separate from the scored evaluation
+attempts documented in `docs/EVALUATION_RESULTS.md`.
+
+**Public application URL:** Not yet available or verified.
+
 
 ## Possible Future Enhancements
 
