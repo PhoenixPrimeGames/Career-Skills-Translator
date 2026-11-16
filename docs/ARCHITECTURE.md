@@ -1,9 +1,9 @@
 # Career Skills Translator: System Architecture and AI Analysis Design
 
 **Course:** COSC 4272 Senior Seminar, Lamar University  
-**Document version:** 0.2
+**Document version:** 0.3
 **Prepared:** 2026-11-15
-**Status:** Student-approved design, implemented and tested locally. Public deployment pending.
+**Status:** Implemented and tested locally; restricted Streamlit deployment verified. Unrestricted public access pending approval.
 **Phase:** System Design and Implementation
 **Requirements baseline:** `requirements.md` v0.1, approved 2026-11-15
 
@@ -12,7 +12,8 @@
 > modular design. This revision records implementation status while
 > retaining the original design rationale. The application source code
 > defines current runtime behavior, including the revised AI relevance
-> instructions in `analysis.py`. Public deployment remains pending.
+> instructions in `analysis.py`. Restricted hosting and live API integration have been verified.
+> Unrestricted public access remains pending approval.
 
 ## 1. Purpose and boundaries
 
@@ -35,7 +36,7 @@ The MVP excludes resume rewriting, job comparisons, learning plans, accounts, sa
 | API interface | Responses API with structured parsing | Implemented and tested |
 | Prompt location | Version-controlled instructions in `analysis.py` | Implemented; Rule 7 refined after EV-09 |
 | Evidence excerpts and status invariants | See Sections 5 and 6 | Implemented and tested |
-| Hosted demonstration protection | To be finalized before public launch | Open decision |
+| Hosted demonstration protection | Restricted Streamlit viewer access, hosted secrets, and enforced $5 API spending limit | Implemented and verified for restricted deployment; additional controls required before unrestricted access |
 
 ## 3. Logical components
 
@@ -223,7 +224,33 @@ The input values will be populated at runtime using safe JSON serialization. The
 
 Keep secrets outside the Git repository. During implementation, add ignore patterns for `.streamlit/secrets.toml`, `.env`, virtual environments, and Python caches. Do not include submitted descriptions or credentials in exceptions, telemetry, console logs, or screenshots.
 
-**Public deployment gate:** A no-login, publicly accessible application with a billable API key can be abused. Before public launch, evaluate provider budget/rate controls and suitable application-level protections. Do not assume that a dashboard spending alert guarantees a hard cost ceiling. Public-access controls are an unresolved deployment decision, not an implemented MVP feature.
+
+**Deployment security status (2026-11-15):**
+
+Career Skills Translator is deployed on Streamlit Community Cloud:
+
+https://career-skills-translator-main.streamlit.app/
+
+The student confirmed that access is restricted to explicitly
+authorized viewers. The OpenAI API key is configured using
+Streamlit's hosted Secrets settings, outside the Git repository.
+
+An enforced $5 hard spending limit is configured for the OpenAI
+API project. Enforcement delays may permit a small overrun.
+
+Hosted verification confirmed:
+- Successful application startup.
+- Safe handling of missing API credentials.
+- Successful completion of one live AI analysis.
+
+These observations verify the restricted deployment workflow.
+They do not establish unrestricted public-access security,
+long-term reliability, or complete protection against API abuse.
+
+Before enabling unrestricted public access, additional
+authentication, request-limiting, and cost-control safeguards
+must be evaluated.
+
 
 ## 8. Errors and user feedback
 
@@ -277,7 +304,13 @@ and EV-10 each passed a selected regression test.
 See `docs/EVALUATION_RESULTS.md` for the original assessments,
 individual scores, regression results, and evaluation limitations.
 
-Public deployment and hosted acceptance testing remain pending.
+A restricted Streamlit Community Cloud deployment was verified on
+November 15, 2026. The student confirmed successful startup,
+appropriate handling of missing API credentials, and one
+completed hosted AI analysis.
+
+Unrestricted public access and long-term hosted reliability
+have not been evaluated.
 
 ## 11. Design-to-requirements notes and open decisions
 
@@ -286,11 +319,14 @@ Public deployment and hosted acceptance testing remain pending.
   structure. Model instructions and evidence-verification rules
   were implemented, tested, and subsequently refined following
   the EV-09 insufficient-evidence failure.
-- The final deployment access/cost protection mechanism is undecided.
+- Restricted deployment uses Streamlit viewer access controls,
+  hosted secrets, and an enforced $5 API spending limit.
+  Additional protections must be evaluated before unrestricted
+  public access.
 - The implemented API configuration uses a 45-second timeout,
   a maximum output budget of 2,500 tokens, and low reasoning
-  effort. Public hosting and deployment protections remain
-  unresolved.
+  effort. Restricted hosting has been verified. Unrestricted
+  public access and its additional safeguards remain pending.
 - Project planning dates depend on the course's actual deadline, which has not been supplied here.
 
 ## 12. Implementation status and remaining work
@@ -311,9 +347,22 @@ have been completed:
 The implementation is documented in the project's source code,
 tests, and evaluation records.
 
-Remaining work includes final documentation reconciliation,
-submission screenshots, deployment security decisions, public
-hosting, and hosted acceptance testing.
+The README, Project Planning Document, AI Usage Log, and
+evaluation documentation were committed in `cb37f90`.
+
+Three demonstration screenshots were committed in `2f432eb`.
+
+The application is deployed with restricted access on
+Streamlit Community Cloud. A hosted AI integration test
+completed successfully.
+
+Remaining activities include final submission verification,
+course demonstration preparation, confirmation of the
+instructor's deadline, and optional GitHub Pages portfolio
+integration.
+
+Unrestricted public access remains subject to additional
+security and cost-control review.
 
 The original design decisions and proposals in earlier sections
 are retained as historical design documentation.
@@ -334,3 +383,4 @@ are retained as historical design documentation.
 | --- | --- | --- | --- |
 | 0.1 | 2026-11-15 | Initial AI-assisted architecture and model instruction design, reflecting approved project decisions | Awaiting student review |
 | 0.2 | 2026-11-15 | Updated design approval, implementation, testing, and remaining-work status | Implemented locally; deployment pending |
+| 0.3 | 2026-11-15 | Documented restricted Streamlit deployment, security controls, hosted API verification, and remaining submission tasks | Student-approved; restricted deployment verified |

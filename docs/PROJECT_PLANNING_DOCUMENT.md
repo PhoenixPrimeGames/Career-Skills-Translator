@@ -2,14 +2,22 @@
 
 **Course:** COSC 4272 Senior Seminar, Lamar University  
 **Project:** Career Skills Translator  
-**Document version:** 0.1 (student-approved baseline)
+**Document version:** 0.2 (deployment status update)
 **Prepared:** November 15, 2026  
 **Project type:** Individual, AI-assisted software development  
 **Planning baseline:** Student-approved `requirements.md` v0.1  
 **Repository:** https://github.com/PhoenixPrimeGames/Career-Skills-Translator  
 **Course submission deadline:** Not established in the reviewed project materials
 
-> **Document purpose and status.** This plan consolidates the original project objectives with implementation progress verified as of November 15, 2026. It distinguishes approved requirements, work already completed, and remaining deliverables. The document itself is an AI-assisted draft pending student review; it is not evidence that outstanding work has been completed.
+
+> **Document purpose and status:** Version 0.1 was approved by
+> the student on November 15, 2026. Version 0.2 updates the
+> recorded implementation, documentation, and deployment status
+> without changing the approved project objectives or scope.
+> The MVP is deployed on Streamlit Community Cloud with
+> restricted access. Public, unrestricted access and portfolio
+> integration remain pending.
+
 
 ## 1. Problem statement
 
@@ -110,7 +118,26 @@ Streamlit results renderer (app.py)
 
 **Verified implementation settings:** Configured model `gpt-6-luna`; API timeout 45 seconds; maximum output tokens 2,500; reasoning effort `low`; API response storage requested with `store=False`. This does not imply the provider retains no information.
 
-**Deployment architecture:** Local Streamlit execution is working. A Python-capable hosting service is needed for a public application. GitHub Pages can host a portfolio link or project description but cannot run the Streamlit backend. A hosted service and public-access protections have not been approved or verified.
+
+**Deployment architecture:** Career Skills Translator is hosted
+on Streamlit Community Cloud at
+https://career-skills-translator-main.streamlit.app/.
+
+Application access is restricted to explicitly authorized viewers.
+The OpenAI API key is configured through Streamlit's hosted
+Secrets settings and is not committed to Git.
+
+The student verified successful application startup, safe
+handling of missing API credentials, and one completed hosted
+AI analysis on November 15, 2026.
+
+An enforced $5 spending limit is configured for the OpenAI API
+project. Minor spending beyond the limit may still be possible
+due to enforcement delays.
+
+The application has not been approved for unrestricted public
+access. GitHub Pages portfolio integration remains pending.
+
 
 ## 7. Technology stack
 
@@ -122,8 +149,8 @@ Streamlit results renderer (app.py)
 | OpenAI Python SDK `>=3.51,<4` | Responses API integration and structured parsing | `analysis.py`, `requirements.txt` |
 | GPT-6 Luna | Initial analysis model | Student-approved selection and configured model ID |
 | pytest `>=8,<10` | Automated test execution | `requirements-dev.txt`; latest student-reported run: 56 passed |
-| Git and GitHub | Version control and project evidence | Verified repository history through commit `51862b0` |
-| Streamlit-compatible Python hosting | Potential public deployment | Selection and public deployment still pending |
+| Git and GitHub | Version control and project evidence | 15 verified commits through `2f432eb` |
+| Streamlit Community Cloud | Restricted application hosting | Deployed; startup and live AI integration verified |
 
 ## 8. Development method and milestone schedule
 
@@ -140,9 +167,11 @@ Development follows an incremental, student-reviewed AI-assisted process. Each m
 | 3.5 User experience | Copyable output, mobile readability, manual checks | Checks reported complete | Nov 15, 2026 |
 | 4.1 Quality evaluation | Ten fictional initial attempts, scored and reviewed | Complete; nine passes, EV-09 failure documented | Nov 15, 2026 |
 | 4.2 Refinement | Prompt adjustment, two new tests, three regression attempts | Complete; commit `51862b0`; 56 automated tests passed | Nov 15, 2026 |
-| 4.3 Documentation | README, reconciled design/evaluation documents, AI log, this plan | In progress; local changes not yet committed | Before submission; date TBD |
-| 5. Submission preparation | Screenshots, instructions verification, packaging, documentation commit(s) | Pending | Before submission; date TBD |
-| 6. Deployment and demonstration | Public-hosting decision, protections, hosted test, demonstration, portfolio link | Pending; public deployment not verified | Date TBD |
+| 4.3 Documentation | README, planning document, AI Usage Log, architecture and evaluation documentation | Complete; commit `cb37f90` | Nov 15, 2026 |
+| 4.4 Demonstration materials | Three application screenshots and README image references | Complete; commit `2f432eb` | Nov 15, 2026 |
+| 4.5 Restricted deployment | Streamlit hosting, access restrictions, API secrets, spending controls, hosted integration test | Restricted deployment verified; unrestricted public access not approved | Nov 15, 2026 |
+| 6. Final submission and portfolio | Final documentation review, course demonstration, submission packaging, portfolio integration | Pending | Date TBD |
+
 
 **Schedule dependency:** Final submission dates and any required presentation date must be taken from the instructor's course schedule. Do not infer a due date from the preparation date of this document.
 
@@ -150,11 +179,15 @@ Development follows an incremental, student-reviewed AI-assisted process. Each m
 
 ### Automated verification
 
-The latest student-provided pytest output reported **56 tests passed, 0 failed, in 3.41 seconds** on Windows with Python 3.14.5. Tests cover schema invariants, input limits, request construction, source-evidence verification, API failure handling, and Streamlit behavior. These results reflect the reported local run and are not a substitute for a final submission-day rerun.
+The latest student-provided pytest output reported **56 tests passed, 0 failed, in 3.30 seconds** on Windows with Python 3.14.5. Tests cover schema invariants, input limits, request construction, source-evidence verification, API failure handling, and Streamlit behavior. These results reflect the reported local run and are not a substitute for a final submission-day rerun.
 
 ### Live integration and user experience
 
-A live model smoke test and an end-to-end Streamlit analysis were completed. The student also reported successful checks for complete text copying into Notepad, presence of all five skill fields, usability at mobile width, and behavior after subsequent submissions. Public hosting has not been tested.
+A live model smoke test and an end-to-end Streamlit analysis were completed. The student also reported successful checks for complete text copying into Notepad, presence of all five skill fields, usability at mobile width, and behavior after subsequent submissions. A restricted Streamlit Community Cloud deployment was verified
+on November 15, 2026. The hosted application loaded successfully,
+displayed the expected missing-API-key message, and subsequently
+completed one live AI analysis after secure API configuration.
+Unrestricted public access has not been enabled.
 
 ### Manual content evaluation
 
@@ -164,16 +197,17 @@ The ten original attempts yielded **nine approved passes and one approved failur
 
 ### Final acceptance checks
 
-| Check | Status as of this draft |
+| Check | Verified or reported status |
 | --- | --- |
-| Functional Streamlit form, validation, and live analysis | Verified locally |
+| Functional Streamlit form, validation, and live analysis | Verified locally and through a hosted integration test |
 | Structured output, source-excerpt validation, and safe API errors | Automated tests passed; live testing performed |
 | Copyable results and mobile-width readability | Manual checks reported passed |
 | Ten required fictional evaluation cases and follow-up regression testing | Completed and documented |
-| Local automated test suite | 56 passed in latest reported run; final rerun pending |
-| Approved documentation and complete AI Usage Log | Reconciliation in progress |
-| Screenshots or demonstration materials | Not yet verified |
-| Public deployment, security review, hosted smoke test | Not yet verified |
+| Local automated test suite | 56 passed in latest reported run |
+| Approved documentation and complete AI Usage Log | Committed in `cb37f90` |
+| Screenshots or demonstration materials | Three screenshots committed in `2f432eb` |
+| Restricted hosting and hosted smoke test | Verified; $5 API hard spending limit configured |
+| Unrestricted public access | Not approved or enabled |
 | Course-specific due date and presentation arrangements | Not established in reviewed materials |
 
 ## 10. Key risks and mitigation strategy
@@ -184,7 +218,7 @@ The ten original attempts yielded **nine approved passes and one approved failur
 | Vague experience descriptions | Generic or irrelevant results | Use a meaningful relevance threshold and `insufficient_information`; EV-09 was corrected in a targeted regression test. |
 | Prompt-injection text in user input | Model may follow untrusted instructions | Pass input separately as data and instruct model to ignore embedded commands; EV-10 passed two observed attempts, not a universal guarantee. |
 | API downtime, quota, timeout, or cost | Failed or delayed analysis and unexpected spending | Use a 45-second timeout, mapped errors, bounded inputs/output, disabled SDK automatic retries, and account-side cost monitoring. |
-| Public abuse of a billable endpoint | Uncontrolled API charges | Before hosting, choose access restrictions/rate controls and spending safeguards; public deployment remains blocked on this decision. |
+| Public abuse of a billable endpoint | Unexpected API charges | Restricted Streamlit viewer access and an enforced $5 API project spending limit are configured. Unrestricted public access remains disabled until additional protections are evaluated. |
 | Sensitive user or employer information | Confidential information sent to a third party | Provide an explicit notice, avoid app-controlled history, keep credentials outside Git, and discourage confidential submissions. |
 | Documentation drift | Inconsistent submission evidence | Reconcile requirements, architecture, README, evaluation records, AI log, and actual code before final commit. |
 | Deadline uncertainty | Incomplete deliverables | Confirm instructor deadline and prioritize mandatory artifacts and demonstration evidence. |
@@ -195,28 +229,51 @@ The project brief summarized in the student-approved requirements and AI Usage L
 
 | Deliverable | Current status / evidence |
 | --- | --- |
-| Project Planning Document: problem, objectives, requirements, features, design, stack, timeline | This draft; pending student approval and local placement |
-| `requirements.md` | Approved baseline committed |
-| `README.md`: overview, features, installation, usage, screenshots, technologies, future work | Created locally, untracked; screenshots still pending |
-| AI Usage Log with at least ten documented AI interactions | 32-entry reviewed draft prepared; locally modified, not yet committed |
-| Complete working application source | Committed through `51862b0` |
-| Automated and manual testing evidence | 56-test run reported; evaluation outputs and scoring committed |
-| Git history: at least ten meaningful commits | 13 verified commits; 15–25 preferred in assignment materials |
-| Screenshots or demonstration materials | Pending verification |
-| Working software demonstration | Verified locally; final demonstration preparation pending |
-| Public/portfolio showcase | Intended; deployment and portfolio integration not yet verified |
+| Project Planning Document | Version 0.1 approved and committed in `cb37f90`; version 0.2 updates deployment status |
+| `requirements.md` | Approved requirements baseline committed |
+| `README.md` | Committed with features, installation, usage, screenshots, technologies, and future enhancements |
+| AI Usage Log | 32 documented AI interactions committed in `cb37f90` |
+| Complete working application source | Implemented, tested, and committed |
+| Automated and manual testing evidence | 56 automated tests passed; ten initial evaluations and three regression attempts documented |
+| Git history | 15 meaningful commits through `2f432eb` |
+| Screenshots and demonstration materials | Three application screenshots committed in `2f432eb` |
+| Hosted application | Restricted Streamlit deployment verified, including one successful live AI analysis |
+| Public portfolio integration | Pending |
+| Final course demonstration and submission | Pending |
 
 The 15–25 commit range is a recommendation in the reviewed assignment summary, not a reason to create artificial commits. New commits should correspond to meaningful remaining work.
 
 ## 12. Remaining actions and decision gates
 
-1. **Student review:** Confirm this planning document's descriptions and correct any missing assignment-specific requirements or dates.
-2. **Documentation consistency:** Finish updating `docs/ARCHITECTURE.md`, `docs/EVALUATION_PLAN.md`, `evaluation/scenarios.json`, the AI Usage Log, and `README.md` to match verified project status.
-3. **Requirements reconciliation:** If revising `requirements.md`, preserve its originally approved v0.1 baseline and explicitly record any changes rather than retroactively rewriting historical approval.
-4. **Submission evidence:** Capture suitable screenshots, verify installation commands on the intended environment, and prepare a short demonstration flow using fictional data.
-5. **Final checks:** Rerun tests, inspect Git status and staged diffs, and verify that no credentials or confidential user descriptions are included in commits.
-6. **Deployment decision:** Assess affordable, safe Python hosting and suitable access/rate safeguards before making the app public.
-7. **Presentation and portfolio:** Complete the required class demonstration and any GitHub Pages integration only after relevant access and security decisions are made.
+
+1. **Documentation consistency:** Finalize the deployment-status updates
+   in `README.md`, `docs/PROJECT_PLANNING_DOCUMENT.md`, and
+   `docs/ARCHITECTURE.md`.
+
+2. **Requirements reconciliation:** Preserve the approved requirements
+   baseline. Any substantive requirements changes must be reviewed
+   separately.
+
+3. **Final verification:** Rerun automated tests, inspect staged
+   changes, and verify that no API credentials or confidential
+   information are included in the repository.
+
+4. **Deployment security:** Maintain restricted Streamlit access and
+   the configured API spending limit. Reassess authentication,
+   rate limiting, and abuse prevention before enabling unrestricted
+   public access.
+
+5. **Course demonstration:** Prepare a short demonstration using
+   fictional experience descriptions, including a successful analysis
+   and an insufficient-information response.
+
+6. **Submission requirements:** Confirm the instructor's deadline,
+   required submission format, and presentation arrangements.
+
+7. **Portfolio integration:** Add the project to the GitHub Pages
+   portfolio when appropriate. Clearly indicate if live application
+   access remains restricted.
+
 
 ## 13. Project governance and AI assistance
 
@@ -232,4 +289,5 @@ The student owns project decisions, reviews AI suggestions, runs or verifies tes
 
 | Version | Date | Description | Status |
 | --- | --- | --- | --- |
-| 0.1 | 2026-11-15 | Initial consolidated planning document reflecting approved baseline and verified progress | Draft for student review |
+| 0.1 | 2026-11-15 | Initial consolidated planning document reflecting approved baseline and verified progress | Student-approved baseline |
+| 0.2 | 2026-11-15 | Recorded completed documentation, screenshots, restricted Streamlit deployment, and hosted verification | Student-approved deployment update |

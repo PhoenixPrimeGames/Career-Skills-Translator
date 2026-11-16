@@ -917,9 +917,90 @@ Uploading the current log added a (1) to the filename
 
 **Related Git commit:** Pending; documentation review and local approval not yet completed.
 
+### AI-033: Finalize Project Documentation
+
+**Date:** November 15, 2026
+
+**Development phase:** Milestone 4.3, Documentation and Submission Readiness
+
+**Original student interaction:** The student approved Project Planning Document v0.1 as the official baseline, implemented recommended documentation corrections, and submitted Git and automated test results for verification.
+
+**AI-generated response summary:** Reviewed and reconciled the README, architecture, evaluation plan, evaluation dataset, AI Usage Log, and Project Planning Document. Provided instructions to stage, inspect, commit, and push the six documentation files.
+
+**Student modifications and decisions:** Approved the Project Planning Document baseline, applied the recommended corrections, and verified the staged file inventory before committing.
+
+**Actual implementation results:**
+- All 56 automated tests passed in 3.30 seconds.
+- Six documentation files were committed.
+- The README and Project Planning Document were added to the repository.
+- Commit `cb37f90` was pushed to GitHub.
+- The student verified that `main` was synchronized with `origin/main` and the working tree was clean.
+
+**Related Git commit:** `cb37f90` — `docs: finalize project planning and development records`
+
+### AI-034: Demonstration Screenshots
+
+**Date:** November 15, 2026
+
+**Development phase:** Milestone 4.4, Demonstration and Submission Materials
+
+**Original student interactions:** The student uploaded screenshots of the application input form, a successful fictional career analysis, and an insufficient-information response. The student also submitted Git output verifying the screenshot commit.
+
+**AI-generated response summary:** Reviewed the screenshots for visible application functionality, readability, and absence of apparent confidential information. Provided README image references and Git staging instructions.
+
+**Student modifications and decisions:** Captured three demonstration screenshots, placed them in `docs/screenshots/`, updated the README, and committed the resulting files.
+
+**Actual implementation results:**
+- `01-input-form.png` demonstrates the input interface.
+- `02-successful-analysis.png` demonstrates a completed analysis.
+- `03-insufficient-information.png` demonstrates the no-skills response to vague experience.
+- The README references all three screenshots.
+- Commit `2f432eb` was pushed to GitHub.
+- The student verified a clean and synchronized working tree.
+
+These screenshots are demonstration evidence, separate from the formally scored evaluation attempts.
+
+**Related Git commit:** `2f432eb` — `docs: add application demonstration screenshots`
+
+### AI-035: Restricted Streamlit Deployment and Hosted Verification
+
+**Date:** November 15, 2026
+
+**Development phase:** Milestone 4.5, Deployment Planning and Security
+
+**Original student prompts and confirmations:**
+- "I enforced a $5 hard limit spend"
+- Confirmed the deployed application was restricted to specific viewers.
+- Confirmed the hosted input form loaded successfully.
+- "I received the expected configuration message"
+- "The hosted analysis returned a completed result"
+- "I approve of these two documents"
+
+**AI-generated response summary:** Recommended restricted Streamlit Community Cloud deployment, server-side secret configuration, and project-level spending protection. Guided the student through application startup verification, missing-credential testing, and a controlled live AI integration test. Prepared deployment-status updates to the README, System Architecture, and Project Planning Document.
+
+**Student modifications and decisions:** Configured an enforced $5 API project spending limit, deployed the application with restricted viewer access, configured the API key through hosted Streamlit Secrets, completed the hosted verification steps, and approved Architecture v0.3 and Project Planning Document v0.2.
+
+**Actual implementation results:**
+- Hosted application: https://career-skills-translator-main.streamlit.app/
+- Restricted viewer access confirmed by the student.
+- Application startup confirmed.
+- Expected missing-API-key message confirmed.
+- One hosted live AI analysis completed successfully.
+- The API key was configured through the hosting provider's secret-management interface.
+- Enforced $5 API project spending limit reported as configured.
+- Hosted response quality was not independently scored.
+- Unrestricted public access remains unapproved.
+- Deployment documentation changes are pending the next Git commit.
+
+**Related Git commit:** Pending verification, proposed documentation commit #16.
+
 ---
 
-## Reconciliation appendix: Verified project status as of November 15, 2026
+## Reconciliation appendix: Project status at AI-032 (November 15, 2026)
+
+This appendix preserves the status verified during AI-032.
+Subsequent commits, screenshot completion, restricted deployment,
+and hosted verification are recorded in AI-033 through AI-035.
 
 This appendix records **later verified outcomes** without rewriting the original chronological account of what was known at the time of each AI interaction. Local test results are user-reported command outputs; Git commit hashes were independently cross-checked against the repository history.
 

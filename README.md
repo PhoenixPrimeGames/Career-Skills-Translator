@@ -4,7 +4,7 @@
 
 Career Skills Translator is a browser-based application that helps people explore how experience from one occupation might apply to another career field. It uses an AI model to identify plausible transferable competencies, cite excerpts from the user's own description, explain target-field applications, and state limitations.
 
-**Project status:** Working local MVP with automated tests and documented manual evaluations. **Public deployment has not yet been verified.**
+**Project status:** Functional MVP deployed on Streamlit Community Cloud with restricted access. Local automated testing, manual evaluations, and a successful hosted AI integration test have been completed.
 
 ## Features
 
@@ -169,7 +169,13 @@ responsibilities are needed instead of inventing transferable skills.
 These are demonstration screenshots, separate from the scored evaluation
 attempts documented in `docs/EVALUATION_RESULTS.md`.
 
-**Public application URL:** Not yet available or verified.
+**Hosted application:** https://career-skills-translator-main.streamlit.app/
+
+**Access:** Restricted to explicitly authorized viewers through Streamlit Community Cloud.
+
+**Hosted verification:** On November 15, 2026, the student confirmed successful application startup, safe handling of missing API credentials, and a completed live AI analysis.
+
+**API cost protection:** An enforced $5 spending limit is configured for the OpenAI API project. This does not guarantee that usage cannot slightly exceed the threshold during enforcement.
 
 
 ## Possible Future Enhancements
