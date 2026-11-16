@@ -1,0 +1,14 @@
+Career Skills Translator - Analysis Results
+
+Status: Completed
+Summary: Maintaining inspection records provides a limited, transferable foundation for organizing and documenting information in software development. It does not demonstrate software development experience or technical qualifications.
+
+Skill 1
+Transferable Skill: Record organization and documentation
+Source Evidence: maintain inspection records
+Target Application: Could support keeping development-related information organized, such as documenting work or maintaining project records.
+Explanation: The responsibility involves maintaining records, a practice that can be useful when software teams need clear, organized documentation.
+Limitations: This experience does not establish software coding ability, familiarity with development tools or processes, or specialist training or certification.
+
+AI-generated interpretation of self-reported experience.
+This analysis does not verify professional qualifications.

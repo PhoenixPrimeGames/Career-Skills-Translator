@@ -1,0 +1,35 @@
+Career Skills Translator - Analysis Results
+
+Status: Completed
+Summary: Your described teaching responsibilities support several competencies relevant to corporate training, though they do not by themselves establish experience delivering training in a corporate setting.
+
+Skill 1
+Transferable Skill: Instructional design
+Source Evidence: I design lessons
+Target Application: This experience may transfer to planning corporate training sessions and organizing content around learning objectives.
+Explanation: Both tasks involve structuring material to support learning.
+Limitations: Lesson design does not establish experience with corporate training needs, learning platforms, or instructional design methods specific to workplaces.
+
+Skill 2
+Transferable Skill: Learning assessment
+Source Evidence: evaluate student progress
+Target Application: This may help you check whether employees understand training content and identify areas that need reinforcement.
+Explanation: Monitoring progress and using evidence of learning are relevant to evaluating training outcomes.
+Limitations: The description does not specify assessment methods or experience evaluating workplace performance or training effectiveness.
+
+Skill 3
+Transferable Skill: Adapting explanations to learners
+Source Evidence: adapt explanations for different learners
+Target Application: This may help you explain workplace concepts in ways that suit employees with different levels of familiarity or learning needs.
+Explanation: Adjusting how information is presented supports understanding across varied audiences.
+Limitations: This does not establish experience addressing the needs of specific corporate audiences or subject areas.
+
+Skill 4
+Transferable Skill: Written instructional feedback
+Source Evidence: prepare written feedback
+Target Application: This may transfer to providing learners with written guidance on progress, understanding, or next steps after training.
+Explanation: Clear written feedback can help learners understand what they have learned and where to focus.
+Limitations: The description does not establish experience writing corporate training materials or feedback for employees.
+
+AI-generated interpretation of self-reported experience.
+This analysis does not verify professional qualifications.

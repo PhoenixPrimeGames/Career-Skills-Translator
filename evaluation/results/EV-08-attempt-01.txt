@@ -1,0 +1,28 @@
+Career Skills Translator - Analysis Results
+
+Status: Completed
+Summary: Your experience supports several transferable competencies for technical writing, particularly organizing information, creating instructional content, and helping people find reliable sources. These are relevant foundations, but they do not establish direct technical-writing experience or specialist training.
+
+Skill 1
+Transferable Skill: Information organization
+Source Evidence: I organize research resources
+Target Application: Technical writers organize information so readers can find and understand the content they need, such as in guides and reference materials.
+Explanation: Organizing research resources involves structuring information for access, a competency that can apply to planning and organizing technical content.
+Limitations: The description does not specify the types of resources or whether you have organized technical documentation.
+
+Skill 2
+Transferable Skill: Instructional writing
+Source Evidence: write instructional guides
+Target Application: Creating guides can transfer to writing step-by-step instructions and other materials that help readers complete tasks.
+Explanation: Writing instructional content calls for presenting information in a usable form, which is also important in technical writing.
+Limitations: The description does not establish experience with technical subject matter, particular documentation formats, or specialist writing tools.
+
+Skill 3
+Transferable Skill: Helping users locate reliable information
+Source Evidence: help visitors locate reliable information
+Target Application: Technical writers need to make useful, trustworthy information accessible to their intended readers.
+Explanation: Helping visitors find reliable information suggests experience attending to information needs and guiding people toward relevant sources.
+Limitations: This supports information-guidance experience, but does not by itself demonstrate user research, technical content validation, or direct work in technical writing.
+
+AI-generated interpretation of self-reported experience.
+This analysis does not verify professional qualifications.

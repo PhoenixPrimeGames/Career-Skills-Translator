@@ -1,0 +1,28 @@
+Career Skills Translator - Analysis Results
+
+Status: Completed
+Summary: Your experience supports transferable troubleshooting and technical documentation skills relevant to software development, though it does not establish direct software development experience.
+
+Skill 1
+Transferable Skill: Systematic troubleshooting
+Source Evidence: I diagnose recurring equipment faults
+Target Application: This approach may transfer to investigating software bugs by examining symptoms, identifying recurring failure patterns, and narrowing down possible causes.
+Explanation: Diagnosing recurring faults involves analyzing problems rather than treating each occurrence in isolation, a useful competency when debugging software.
+Limitations: The description does not specify software debugging, programming, or software development tools.
+
+Skill 2
+Transferable Skill: Recording and communicating test findings
+Source Evidence: record test results
+Target Application: Careful recording of test results may help when documenting software test outcomes and communicating what happened during a reproduction or investigation.
+Explanation: Accurate test records can make technical findings clearer and easier for others to review.
+Limitations: This evidence concerns equipment testing; it does not establish experience with software testing methods or frameworks.
+
+Skill 3
+Transferable Skill: Technical documentation
+Source Evidence: write troubleshooting guides for coworkers
+Target Application: Writing troubleshooting guides may transfer to documenting software setup, known issues, or steps for diagnosing problems for teammates.
+Explanation: Creating practical guides requires organizing technical information into instructions others can use.
+Limitations: The description does not establish experience writing software documentation or working within software development processes.
+
+AI-generated interpretation of self-reported experience.
+This analysis does not verify professional qualifications.

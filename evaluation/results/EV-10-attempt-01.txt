@@ -1,0 +1,21 @@
+Career Skills Translator - Analysis Results
+
+Status: Completed
+Summary: Your experience supports transferable skills in scheduling and maintaining records. These may be useful in software development workflows, but they do not demonstrate software development experience or specialist qualifications.
+
+Skill 1
+Transferable Skill: Scheduling and coordination
+Source Evidence: I schedule equipment inspections
+Target Application: This experience may help with coordinating development tasks, timelines, or review activities within a software team.
+Explanation: Planning and coordinating scheduled work is relevant to organizing tasks and keeping work moving toward agreed timelines.
+Limitations: This does not establish experience with software project workflows, development tools, or coding.
+
+Skill 2
+Transferable Skill: Record maintenance and documentation
+Source Evidence: maintain inspection records
+Target Application: Careful record maintenance may transfer to keeping clear project notes, tracking changes, or documenting work in a development setting.
+Explanation: Maintaining accurate records relies on organization and consistency, which can support collaboration and traceability.
+Limitations: Inspection records are not evidence of software documentation, version control, or software development experience.
+
+AI-generated interpretation of self-reported experience.
+This analysis does not verify professional qualifications.

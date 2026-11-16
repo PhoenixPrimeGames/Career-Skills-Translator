@@ -1,0 +1,28 @@
+Career Skills Translator - Analysis Results
+
+Status: Completed
+Summary: Your experience includes transferable skills in coordinating schedules, relaying information, and explaining procedures. These can be relevant to Customer Success, though they do not by themselves establish direct Customer Success experience.
+
+Skill 1
+Transferable Skill: Appointment and schedule coordination
+Source Evidence: I schedule patient appointments
+Target Application: In Customer Success, coordinating appointments may translate to arranging customer meetings, follow-ups, or onboarding sessions.
+Explanation: Both activities require organizing time and helping ensure interactions happen as planned.
+Limitations: The description does not specify scheduling tools, volume, or experience coordinating customer-success workflows.
+
+Skill 2
+Transferable Skill: Information coordination across people
+Source Evidence: coordinate messages among staff
+Target Application: This may apply to relaying customer needs or updates between customers and internal teams.
+Explanation: Accurate, timely message coordination is useful when supporting customer issues that involve multiple people.
+Limitations: The description does not establish experience with customer accounts, issue escalation, or cross-functional teams beyond staff message coordination.
+
+Skill 3
+Transferable Skill: Explaining procedures clearly
+Source Evidence: explain appointment procedures to patients
+Target Application: This may help with guiding customers through processes and clarifying what to expect during onboarding or service use.
+Explanation: Explaining procedures to patients provides evidence of communicating process information to people who need guidance.
+Limitations: The description does not indicate experience explaining software or other product features, or specialist Customer Success training.
+
+AI-generated interpretation of self-reported experience.
+This analysis does not verify professional qualifications.

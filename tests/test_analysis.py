@@ -285,3 +285,34 @@ def test_schema_parsing_error_rejected():
 
     with pytest.raises(AnalysisUnavailableError):
         analyze_career(valid_input(), client=fake_client)
+
+
+def test_prompt_rejects_generic_workplace_behaviors():
+    """Ensure the analysis instructions contain the relevance threshold."""
+    assert "generic workplace behaviors" in ANALYSIS_INSTRUCTIONS
+    assert "meaningful" in ANALYSIS_INSTRUCTIONS
+    assert "status=insufficient_information" in ANALYSIS_INSTRUCTIONS
+
+
+def test_analyze_career_accepts_insufficient_information():
+    """The backend must accept a valid no-skills AI result."""
+    fake_client = Mock()
+
+    expected = AnalysisResult(
+        status="insufficient_information",
+        summary=(
+            "The description lacks specific responsibilities "
+            "needed for a meaningful career translation."
+        ),
+        skills=[],
+    )
+
+    fake_client.responses.parse.return_value = SimpleNamespace(
+        status="completed",
+        output_parsed=expected,
+    )
+
+    result = analyze_career(valid_input(), client=fake_client)
+
+    assert result == expected
+    fake_client.responses.parse.assert_called_once()

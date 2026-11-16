@@ -1,0 +1,28 @@
+Career Skills Translator - Analysis Results
+
+Status: Completed
+Summary: Your experience supports transferable troubleshooting, test-recording, and technical communication skills relevant to software development. These skills do not establish direct software development experience.
+
+Skill 1
+Transferable Skill: Systematic troubleshooting
+Source Evidence: I diagnose recurring equipment faults
+Target Application: This approach may transfer to investigating software defects by examining symptoms, identifying possible causes, and narrowing down what needs attention.
+Explanation: Diagnosing recurring faults involves structured problem-solving, a competency useful when investigating bugs and other software issues.
+Limitations: Equipment troubleshooting is not evidence of experience debugging software, programming, or using software development tools.
+
+Skill 2
+Transferable Skill: Recording and communicating test results
+Source Evidence: record test results
+Target Application: Careful test records can provide a foundation for documenting software test observations and communicating whether expected behavior was observed.
+Explanation: Accurate records help make testing findings clear and reproducible, which is useful in software development workflows.
+Limitations: This does not establish experience with software testing methods, test automation, or software quality tools.
+
+Skill 3
+Transferable Skill: Writing practical technical guidance
+Source Evidence: write troubleshooting guides for coworkers
+Target Application: This experience may transfer to writing clear instructions or technical documentation for software users or teammates.
+Explanation: Creating guides for coworkers requires organizing information so others can follow it when resolving problems.
+Limitations: Troubleshooting guides do not establish experience documenting software, APIs, or development processes.
+
+AI-generated interpretation of self-reported experience.
+This analysis does not verify professional qualifications.

@@ -1,0 +1,28 @@
+Career Skills Translator - Analysis Results
+
+Status: Completed
+Summary: Your experience includes several competencies relevant to Business Analytics, particularly interpreting performance data, investigating discrepancies, and communicating findings. These are transferable skills, not evidence of direct business analytics experience or specialist training.
+
+Skill 1
+Transferable Skill: Performance data interpretation
+Source Evidence: I compare weekly sales reports
+Target Application: Comparing reports can help in business analytics tasks such as reviewing performance measures and identifying patterns over time.
+Explanation: The responsibility involves working with recurring sales information and comparing results, which is relevant to analyzing business performance.
+Limitations: The description does not specify the methods, tools, or complexity of the analysis, and does not establish experience with specialized analytics software or techniques.
+
+Skill 2
+Transferable Skill: Discrepancy investigation
+Source Evidence: investigate stock discrepancies
+Target Application: This experience may transfer to checking data for inconsistencies and examining possible causes of unexpected results in business datasets.
+Explanation: Investigating a mismatch requires attention to evidence and a structured effort to understand why records or outcomes differ.
+Limitations: The description does not detail the investigation process or establish experience with formal data-quality procedures or broader analytical projects.
+
+Skill 3
+Transferable Skill: Communicating analytical findings
+Source Evidence: explain performance trends to store managers
+Target Application: Explaining trends to managers is relevant to presenting findings in clear, decision-oriented language to business stakeholders.
+Explanation: Business analytics often requires making performance information understandable to people who use it to inform decisions.
+Limitations: The description does not indicate the presentation formats used or whether the explanations included recommendations, and it does not establish experience communicating with analytics-specific audiences.
+
+AI-generated interpretation of self-reported experience.
+This analysis does not verify professional qualifications.

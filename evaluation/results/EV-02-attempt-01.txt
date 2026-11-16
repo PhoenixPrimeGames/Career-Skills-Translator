@@ -1,0 +1,35 @@
+Career Skills Translator - Analysis Results
+
+Status: Completed
+Summary: Your scheduling, shift coordination, complaint resolution, and inventory monitoring experience supports several competencies relevant to project coordination. These are transferable skills, not evidence of direct project coordination experience.
+
+Skill 1
+Transferable Skill: Scheduling and resource planning
+Source Evidence: I create weekly employee schedules
+Target Application: This experience may apply to organizing project timelines, coordinating availability, and planning how people are allocated to tasks.
+Explanation: Creating schedules requires planning around staffing needs and availability, which are also considerations when coordinating project work.
+Limitations: The description does not establish experience with project plans, project scheduling software, or formal project management methods.
+
+Skill 2
+Transferable Skill: Operational coordination
+Source Evidence: coordinate busy shifts
+Target Application: This may transfer to keeping project activities and participants aligned as work progresses.
+Explanation: Coordinating a busy shift involves managing concurrent activities and helping work proceed in an organized way, a competency relevant to coordinating project tasks.
+Limitations: The description does not specify coordination across project teams, departments, or longer-term project phases.
+
+Skill 3
+Transferable Skill: Issue resolution and stakeholder communication
+Source Evidence: resolve customer complaints
+Target Application: This experience may help with listening to concerns, communicating responses, and addressing issues that arise among project stakeholders.
+Explanation: Resolving complaints involves responding to problems and communicating with people affected by them, which can be useful when handling project concerns.
+Limitations: The description does not indicate experience resolving project risks, facilitating stakeholder meetings, or documenting escalations.
+
+Skill 4
+Transferable Skill: Monitoring and tracking resources
+Source Evidence: monitor inventory counts
+Target Application: This may apply to tracking project supplies or other resources and noticing when quantities need attention.
+Explanation: Monitoring inventory involves checking resource levels, a practical competency that can support project resource tracking.
+Limitations: The description does not establish experience with project budgets, procurement, or project tracking systems.
+
+AI-generated interpretation of self-reported experience.
+This analysis does not verify professional qualifications.

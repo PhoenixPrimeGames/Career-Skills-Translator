@@ -1,0 +1,14 @@
+Career Skills Translator - Analysis Results
+
+Status: Completed
+Summary: The description supports a limited transferable competency in completing assigned work and assisting others. It does not establish cybersecurity-specific experience or technical skills.
+
+Skill 1
+Transferable Skill: Task follow-through and workplace support
+Source Evidence: I complete assigned tasks and help where needed during the workday.
+Target Application: In cybersecurity analysis, reliably completing assigned work and assisting colleagues can support coordinated workflows, such as handling routine tasks and contributing to team operations.
+Explanation: The description directly indicates completing assigned tasks and helping where needed. These behaviors can be useful in team-based work, though the specific tasks and level of responsibility are not described.
+Limitations: This is not evidence of cybersecurity analysis, security tools or technical proficiency, incident response experience, or specialist training or certification.
+
+AI-generated interpretation of self-reported experience.
+This analysis does not verify professional qualifications.

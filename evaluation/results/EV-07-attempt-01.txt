@@ -1,0 +1,28 @@
+Career Skills Translator - Analysis Results
+
+Status: Completed
+Summary: Your experience supports transferable competencies in structured testing, reproducing intermittent failures, and documenting results. These are relevant to software quality assurance, though they do not establish direct software testing experience or specialist training.
+
+Skill 1
+Transferable Skill: Structured test execution
+Source Evidence: I follow diagnostic checklists
+Target Application: Use test plans or checklists to execute software checks consistently and avoid overlooking steps.
+Explanation: Following a defined diagnostic process is relevant to carrying out repeatable software tests.
+Limitations: This experience does not establish familiarity with software testing methods, test management tools, or automation.
+
+Skill 2
+Transferable Skill: Failure reproduction and investigation
+Source Evidence: reproduce intermittent equipment failures
+Target Application: Try to reproduce software defects and record the conditions under which they occur, helping a team investigate them.
+Explanation: Reproducing intermittent problems is a useful investigative competency because reliable reproduction can help clarify and communicate a failure.
+Limitations: Equipment troubleshooting is not the same as diagnosing software defects, and the description does not indicate software debugging experience.
+
+Skill 3
+Transferable Skill: Test-result documentation
+Source Evidence: document test outcomes
+Target Application: Record software test results clearly so others can review what was tested and what happened.
+Explanation: Accurate outcome documentation supports traceability and communication in quality assurance work.
+Limitations: The experience does not specify software defect reports, QA documentation standards, or tools used.
+
+AI-generated interpretation of self-reported experience.
+This analysis does not verify professional qualifications.
