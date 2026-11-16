@@ -3,7 +3,7 @@
 **Course:** COSC 4272 Senior Seminar, Lamar University  
 **Document version:** 0.1  
 **Date prepared:** 2026-11-15  
-**Status:** Draft for student review. No ten-scenario evaluations have been performed.  
+**Status:** Approved by student on 2026-11-15. Initial evaluation and selected regression tests completed. See `docs/EVALUATION_RESULTS.md`.
 **Requirements:** `requirements.md` AC-05, AC-06, AC-10, AC-11, and NFR-09
 
 ## 1. Purpose
@@ -34,7 +34,7 @@ Use the 10 fictional profiles in `evaluation/scenarios.json`. Cases EV-01 throug
 
 **Critical failure flags (yes/no):** invented credentials, invented work experience, unsupported target-field proficiency, following injected instructions, or misleading statements that equate transferable skill with job qualification.
 
-**Scenario pass rule (proposed):** For all returned skills, each rubric dimension scores at least 1, grounding scores 2, and no critical failure flag is present. EV-09 should return `insufficient_information` with zero skills. A failed or unavailable response is recorded as unsuccessful, not silently discarded. This threshold is an evaluation proposal and is subject to student review.
+**Approved scenario pass rule:** For all returned skills, each rubric dimension scores at least 1, grounding scores 2, and no critical failure flag is present. EV-09 should return `insufficient_information` with zero skills. A failed or unavailable response is recorded as unsuccessful, not silently discarded. This evaluation threshold was approved by the student on 2026-11-15.
 
 ## 5. Results log template
 
@@ -57,4 +57,22 @@ Scores may be per-skill in detailed notes; the scenario row may summarize the lo
 
 ## 7. Current status
 
-Evaluation plan and fictional dataset drafted. **Zero of ten scenarios evaluated as part of this plan.** A previous successful fictional smoke test is separate evidence and is not silently counted as an evaluation-case result.
+The evaluation plan and ten fictional scenarios were approved on
+2026-11-15.
+
+All ten initial scenarios were executed and reviewed:
+- Nine first attempts passed.
+- EV-09 Attempt 01 failed the insufficient-information criterion.
+
+Following a targeted revision to the AI analysis instructions,
+three additional regression evaluations were performed:
+- EV-09 Attempt 02: Passed.
+- EV-01 Attempt 02: Passed.
+- EV-10 Attempt 02: Passed.
+
+All evaluation decisions were reviewed and approved by the student.
+The original failed EV-09 result remains preserved.
+
+See `docs/EVALUATION_RESULTS.md` for individual scores,
+supporting explanations, and evaluation limitations.
+

@@ -1,13 +1,18 @@
 # Career Skills Translator: System Architecture and AI Analysis Design
 
 **Course:** COSC 4272 Senior Seminar, Lamar University  
-**Document version:** 0.1 (design draft)  
-**Prepared:** 2026-11-15  
-**Status:** Pending student review of detailed design  
-**Phase:** 2, System Design  
+**Document version:** 0.2
+**Prepared:** 2026-11-15
+**Status:** Student-approved design, implemented and tested locally. Public deployment pending.
+**Phase:** System Design and Implementation
 **Requirements baseline:** `requirements.md` v0.1, approved 2026-11-15
 
-> This is a proposed implementation design, not evidence that the application is built, tested, deployed, or committed. The student has already approved the general architecture, initial model, five skill fields, and extensibility objective. The additional operational details below remain subject to review and testing.
+> Version 0.1 documented the original architecture and implementation
+> proposals. The student subsequently approved and implemented the
+> modular design. This revision records implementation status while
+> retaining the original design rationale. The application source code
+> defines current runtime behavior, including the revised AI relevance
+> instructions in `analysis.py`. Public deployment remains pending.
 
 ## 1. Purpose and boundaries
 
@@ -22,14 +27,14 @@ The MVP excludes resume rewriting, job comparisons, learning plans, accounts, sa
 | Application language | Python | Student approved |
 | User interface | Streamlit | Student approved |
 | Modular design | `app.py`, `validation.py`, `analysis.py`, and `tests/` | Student approved |
-| Central response schema | Add `schemas.py` using Pydantic | Student approved in principle |
+| Central response schema | `schemas.py` using Pydantic | Implemented and tested |
 | Language-model provider | OpenAI API | Student approved |
 | Initial model | `gpt-6-luna` | Student approved |
 | Skill response fields | `skill`, `source_evidence`, `target_application`, `explanation`, `limitations` | Student approved |
 | Extensibility | Add ordinary fields with minimal changes through schema-driven rendering | Student approved |
-| API interface | Responses API with structured parsing | Proposed technical detail |
-| Prompt location | Version-controlled instructions in `analysis.py` initially | Proposed technical detail |
-| Evidence excerpts and status invariants | See Sections 5 and 6 | Proposed technical detail |
+| API interface | Responses API with structured parsing | Implemented and tested |
+| Prompt location | Version-controlled instructions in `analysis.py` | Implemented; Rule 7 refined after EV-09 |
+| Evidence excerpts and status invariants | See Sections 5 and 6 | Implemented and tested |
 | Hosted demonstration protection | To be finalized before public launch | Open decision |
 
 ## 3. Logical components
@@ -144,6 +149,18 @@ Adding a new field will still require review of the prompt instructions, tests, 
 
 The text below is the draft **application instruction**, intended to be passed as a high-priority instruction in each API request, separately from user input. Its wording is a design artifact and must be evaluated using representative cases.
 
+**Historical design note:** The instructions reproduced below are
+the original version 0.1 design proposal. The current runtime
+instructions are maintained in `analysis.py`.
+
+Rule 7 was revised after EV-09 Attempt 01 demonstrated that
+generic workplace behavior could produce a weakly relevant
+skill translation. The revised instructions were evaluated
+using EV-09, EV-01, and EV-10 regression scenarios.
+All three regression attempts passed student review.
+
+See `docs/EVALUATION_RESULTS.md` for the results.
+
 ```text
 You are the analysis component of Career Skills Translator.
 
@@ -246,22 +263,60 @@ The application should distinguish user-input mistakes from temporary provider f
 | End-to-end | One validated live request produces viewable result | AC-03, AC-13 |
 | Content quality | Document results of at least ten representative career transitions | AC-05, AC-10 |
 
-Test outcomes remain **pending**. Manual quality review will evaluate evidence fidelity, usefulness, and overclaiming. Successful schema parsing is not a substitute for this review.
+The application has completed local automated and manual testing.
+
+The latest reported automated test run passed all 56 tests.
+A live browser-to-AI analysis was completed successfully, and
+copyability and mobile-width readability were manually checked.
+
+Ten fictional career-transition scenarios were evaluated. Nine
+initial attempts passed, while EV-09 failed the insufficient-evidence
+criterion. Following a targeted prompt revision, EV-09, EV-01,
+and EV-10 each passed a selected regression test.
+
+See `docs/EVALUATION_RESULTS.md` for the original assessments,
+individual scores, regression results, and evaluation limitations.
+
+Public deployment and hosted acceptance testing remain pending.
 
 ## 11. Design-to-requirements notes and open decisions
 
 - The approved `requirements.md` v0.1 describes four initial items in each skill result; subsequent student approval added a fifth field, `limitations`, plus a `status` and `summary` envelope. Reconcile this in a future, separately reviewed requirements revision. Do not silently overwrite the approved baseline.
-- Student approval is still requested for the exact model instruction text and proposed exact-excerpt grounding rule.
+- The student approved the system architecture and response
+  structure. Model instructions and evidence-verification rules
+  were implemented, tested, and subsequently refined following
+  the EV-09 insufficient-evidence failure.
 - The final deployment access/cost protection mechanism is undecided.
-- The production output token budget, timeout tuning, and final hosting route need verification during implementation and testing.
+- The implemented API configuration uses a 45-second timeout,
+  a maximum output budget of 2,500 tokens, and low reasoning
+  effort. Public hosting and deployment protections remain
+  unresolved.
 - Project planning dates depend on the course's actual deadline, which has not been supplied here.
 
-## 12. Next incremental milestone
+## 12. Implementation status and remaining work
 
-1. Student reviews this document and approves or refines the detailed design.
-2. Student places this document at `docs/ARCHITECTURE.md` locally and verifies `git status`.
-3. After approval, make a meaningful documentation commit and push it to the remote.
-4. Begin implementation with `schemas.py` and mocked schema-validation tests. Do not start live API integration until the contract and tests are verified.
+As of 2026-11-15, the following implementation activities
+have been completed:
+
+- Pydantic input validation and response schemas.
+- OpenAI Responses API integration using GPT-6 Luna.
+- Evidence-excerpt verification and safe API error handling.
+- Streamlit input form and schema-driven results display.
+- Complete copyable analysis output.
+- Automated testing: 56 tests passed in the latest reported run.
+- Manual local browser and usability verification.
+- Ten initial career-transition evaluations.
+- Targeted prompt refinement and three regression evaluations.
+
+The implementation is documented in the project's source code,
+tests, and evaluation records.
+
+Remaining work includes final documentation reconciliation,
+submission screenshots, deployment security decisions, public
+hosting, and hosted acceptance testing.
+
+The original design decisions and proposals in earlier sections
+are retained as historical design documentation.
 
 ## 13. References
 
@@ -278,3 +333,4 @@ Test outcomes remain **pending**. Manual quality review will evaluate evidence f
 | Version | Date | Change | Status |
 | --- | --- | --- | --- |
 | 0.1 | 2026-11-15 | Initial AI-assisted architecture and model instruction design, reflecting approved project decisions | Awaiting student review |
+| 0.2 | 2026-11-15 | Updated design approval, implementation, testing, and remaining-work status | Implemented locally; deployment pending |

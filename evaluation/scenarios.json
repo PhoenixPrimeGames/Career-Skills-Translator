@@ -1,6 +1,6 @@
 {
   "dataset_version": "0.1",
-  "status": "draft_pending_student_review",
+  "status": "approved",
   "note": "Fictional inputs for manual evaluation; not actual test results.",
   "scenarios": [
     {
