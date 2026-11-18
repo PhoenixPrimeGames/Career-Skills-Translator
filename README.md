@@ -4,7 +4,7 @@
 
 Career Skills Translator is a browser-based application that helps people explore how experience from one occupation might apply to another career field. It uses an AI model to identify plausible transferable competencies, cite excerpts from the user's own description, explain target-field applications, and state limitations.
 
-**Project status:** Functional MVP deployed on Streamlit Community Cloud with restricted access. Local automated testing, manual evaluations, and a successful hosted AI integration test have been completed.
+**Project status:** Functional MVP deployed on Streamlit Community Cloud with temporary public access.
 
 ## Features
 
@@ -106,7 +106,7 @@ Run automated tests without making billable API requests:
 python -m pytest -v
 ```
 
-**Last student-reported result:** 56 tests passed (November 15, 2026). The tests cover input validation, response schemas, evidence-excerpt verification, API error handling, and Streamlit UI behavior. They do not prove the semantic accuracy of generated translations.
+**Initial test results:** 56 tests passed (November 15, 2026). The tests cover input validation, response schemas, evidence-excerpt verification, API error handling, and Streamlit UI behavior. They do not prove the semantic accuracy of generated translations.
 
 Manual quality evaluation is documented in:
 
@@ -171,16 +171,14 @@ attempts documented in `docs/EVALUATION_RESULTS.md`.
 
 **Hosted application:** https://career-skills-translator-main.streamlit.app/
 
-**Access:** Restricted to explicitly authorized viewers through Streamlit Community Cloud.
-
-**Hosted verification:** On November 15, 2026, the student confirmed successful application startup, safe handling of missing API credentials, and a completed live AI analysis.
+**Access:** Public through Streamlit Community Cloud.
 
 **API cost protection:** An enforced $5 spending limit is configured for the OpenAI API project. This does not guarantee that usage cannot slightly exceed the threshold during enforcement.
 
 
 ## Possible Future Enhancements
 
-After the MVP and submission requirements are complete, potential improvements include optional session-only result persistence, more extensive evaluation across occupation types, and broader accessibility testing. These are ideas for later review, not implemented features.
+After the MVP and submission requirements are complete, potential improvements include optional session-only result persistence, more extensive evaluation across occupation types, and broader accessibility testing.
 
 ## Academic Documentation
 
